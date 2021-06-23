@@ -1,7 +1,7 @@
 import React from 'react'
 import CounterListContainer from './containers/CounterListContainer';
 import { createStore } from 'redux';
-import reducers from './reducers'
+import reducers from './modules'
 import { Provider } from 'react-redux';
 
 

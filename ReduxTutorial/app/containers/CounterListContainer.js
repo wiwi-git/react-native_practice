@@ -1,4 +1,4 @@
-import * as actions from '../actions';
+import * as actions from '../modules';
 import { connect } from 'react-redux';
 import App from '../components/App'
 
