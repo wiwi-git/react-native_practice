@@ -1,11 +1,16 @@
 import React from 'react';
 import { View,StyleSheet,Text, TouchableOpacity } from 'react-native';
 
-export default SomethingScreen = () => {
+export default SomethingScreen = (props) => {
     return(
         <View style={styles.container}>
             <Text>something</Text>
-            <TouchableOpacity>back</TouchableOpacity>
+            <TouchableOpacity onPress={
+                () => {
+                    props.navigation.pop()               }
+            }>
+                <Text>back</Text>
+            </TouchableOpacity>
         </View>
     );
 }

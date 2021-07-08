@@ -23,9 +23,9 @@ import App from './app';
 export default AppWrapper = () => {
     return (
         // <Provider store={store}>
-        <SafeAreaProvider>
+        // <SafeAreaProvider>
             <App/>
-        </SafeAreaProvider>
+        // </SafeAreaProvider>
         // </Provider>
     )
 }
