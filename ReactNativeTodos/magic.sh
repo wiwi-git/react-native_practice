@@ -17,9 +17,7 @@ cd ..
 rm -rf ~/Library/Developer/Xcode/DerivedData
 
 echo "Installing things again";
-npm install;
-cd ios
-pod install
-cd ..;
+npx npm install;
+npx pod-install
 
-npm start -- --reset-cache;
+npx npm start -- --reset-cache;
