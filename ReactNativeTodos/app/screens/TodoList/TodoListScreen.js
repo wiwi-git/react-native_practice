@@ -4,23 +4,38 @@ import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, removeTodo, toggleCheck } from '../../store/todo';
+import styled from 'styled-components';
 // import { SafeAreaView } from 'react-native-safe-area-context';
+import makeId from '../../utils/makeId';
 
-export default TodoListScreen = () => {
+export default () => {
   const dispatch = useDispatch();
   const todos = useSelector((store) => store.todo.todos);
+  // const todos = [];
   console.log("TodoListScreen - todos = ", todos);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.appTitle}>Hello World</Text>
       <View style={styles.card}>
-        <TodoInsert onAddTodo={(todo) => { dispatch(addTodo(todo)) }} />
+        <TodoInsert onAddTodo={
+          (textValue) => { 
+            let todo = {
+              id: 'todo-' + makeId(),
+              textValue: textValue,
+              checked: false
+            }
+            console.log("TodoListScreen - TodoInsert tag - onAddTodo: = ", todo);
+            dispatch(addTodo(todo)) 
+          }
+          } />
         <TodoList todos={todos} onRemove={(id) => { dispatch(removeTodo(id)) }} onToggle={(id) => { dispatch(toggleCheck(id)) }} />
       </View>
     </SafeAreaView>
   );
 };
-
+const Container = styled.View`
+  
+`;
 const styles = StyleSheet.create(
   {
     container: {

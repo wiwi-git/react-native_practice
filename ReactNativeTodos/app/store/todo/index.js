@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    todos:[
-        {
-            id:'',
-            textValue:'',
-            checked:false
-        }
-    ]
+    todos:[]
 }
 //{id: Math.random().toString(), textValue: text, checked: false},
 
@@ -15,29 +9,25 @@ const todoSlice = createSlice({
     name:'todo',
     initialState,
     reducers: {
-        addTodo: (state, {payload:{todo}}) => {
-            console.log("addTodo : ", state, payload);
+        addTodo: (state, action) => {
+            console.log("addTodo : ", state, action.payload);
             return {
-                todos:[
-                    ...state,
-                    todo
-                ]
+                todos:[...state.todos, action.payload]
             }
         },
-        removeTodo: (state, {payload:targetId}) => {
-        console.log("removeTodo: ", state, payload);
+        removeTodo: (state, action) => {
+        console.log("removeTodo: ", action.payload);
             return {
-                todos:[
-                    state.todos.filter(id => id !== targetId)
-                ]
+                todos: state.todos.filter((todo) => {
+                    console.log("removeTodo-inner : ", todo.id, todo.id!==action.payload)
+                    return todo.id !== action.payload
+                })
             }
         },
-        toggleCheck: (state, {payload:targetId}) => {
-            console.log("toggleCheck: ", state, payload);
+        toggleCheck: (state, action) => {
+            console.log("toggleCheck: ", state, action.payload);
             return {
-                todos:[
-                    state.todos.map(todo => todo.id === targetId ? { ...todo, checked: !todo.checked} : todo)
-                ]
+                todos: state.todos.map(todo => todo.id === action.payload ? { ...todo, checked: !todo.checked} : todo)
             }
         }
     }
