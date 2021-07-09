@@ -5,9 +5,11 @@ import Icon from 'react-native-vector-icons/AntDesign';
 Icon.loadFont();
 
 const TodoListItem = ({textValue, id, checked, onRemove, onToggle}) => {
+    console.log("TodoListItem = ",textValue, id, checked, onRemove, onToggle);
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPressOut={onToggle(id)}>
+            {/* <TouchableOpacity onPressOut={onToggle(id)}> */}
+            <TouchableOpacity onPress={()=>{onToggle(id)}}>
                 {checked ? 
                 (
                     <View style={styles.completeCircle}>
@@ -20,7 +22,7 @@ const TodoListItem = ({textValue, id, checked, onRemove, onToggle}) => {
             </TouchableOpacity>
             <Text style={[styles.text, checked? styles.strikeText : styles.unstrikeText]}> {textValue} </Text>
             <TouchableOpacity>
-                <Text style={styles.buttonContainer} onPress={onRemove(id)}>
+                <Text style={styles.buttonContainer} onPress={()=>{onRemove(id)}}>
                     <Icon name="delete" size={30} color="#e33057"/>
                 </Text>
             </TouchableOpacity>

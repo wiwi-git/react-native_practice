@@ -16,21 +16,24 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, {payload:{todo}}) => {
+            console.log("addTodo : ", state, payload);
             return {
                 todos:[
-                    ...state.todos,
+                    ...state,
                     todo
                 ]
             }
         },
-        removeTodo: (state, {payload:{targetId}}) => {
+        removeTodo: (state, {payload:targetId}) => {
+        console.log("removeTodo: ", state, payload);
             return {
                 todos:[
                     state.todos.filter(id => id !== targetId)
                 ]
             }
         },
-        toggleCheck: (state, {payload:{targetId}}) => {
+        toggleCheck: (state, {payload:targetId}) => {
+            console.log("toggleCheck: ", state, payload);
             return {
                 todos:[
                     state.todos.map(todo => todo.id === targetId ? { ...todo, checked: !todo.checked} : todo)

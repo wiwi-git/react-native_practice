@@ -23,7 +23,7 @@ const TodoInsert = ({onAddTodo}) => {
             value={newTodoItem}
             autoCorrect={false} />
             <View style={styles.button}>
-                <Button title={'Add'} onPress={addTodoHandler}/>
+                <Button title={'Add'} onPress={() => {addTodoHandler()}}/>
             </View>
         </View>
     );
