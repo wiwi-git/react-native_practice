@@ -2,27 +2,35 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, SafeAreaView, TouchableOpacity, Linking } from 'react-native';
 
 export default () => {
-  const {base,setBase} = useState('');
-  const {key1, setKey1} = useState('');
-  const {key2, setKey2} = useState('');
-  const {value1, setValue1} = useState('');
-  const {value2, setValue2} = useState('');
+  const [base, setBase] = useState('');
+  const [key1, setKey1] = useState('');
+  const [key2, setKey2] = useState('');
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
 
   const sendAction = async () => {
-    if (base.lengh === 0) return;
-    if (await Linking.canOpenURL(base)) 
-      return;
+    console.log(base);
+    if (base.length === 0){
+      console.log("base length 0");
+      return
+    };
+    const baseCanOpen = await Linking.canOpenURL(base)
+    if (!baseCanOpen) return;
     
-    if (key1.lengh === 0 || value1.lengh === 0) 
+    if (key1.length === 0 || value1.length === 0) {
+      console.log('open: ',base);
       return await Linking.openURL(base);
+    }
 
     var prefix = "?" + key1 + "=" + value1;
     var url = base.slice(-1) === '/' ? base + prefix : base + '/' + prefix;
 
-    if (key2.lengh == 0 || value2.lengh == 0) {
+    if (key2.length == 0 || value2.length == 0) {
+      console.log('open: ', url);
       return await Linking.openURL(url);
     } else {
       url += '&' + key2 + '=' + value2;
+      console.log('open: ',url);
       return await Linking.openURL.openURL(url);
     }
   }
@@ -36,7 +44,7 @@ export default () => {
           style={style.TextInput} 
           placeholder={"ex) https://api.dy.com/"}
           value={base}
-          onChangeText={(text)=>setBase(text)}/>
+          onChangeText={(text)=>setBase(text)}></TextInput>
         </View>
         <Text style={style.Text}>Param1</Text>
         <View style={style.QueryView}>
@@ -44,7 +52,8 @@ export default () => {
           style={style.HalfTextInput} 
           placeholder={"Key"}
           value={key1}
-          onChangeText={(text)=>setKey1(text)}/>
+          onChangeText={(text)=>setKey1(text)}
+          />
           <TextInput 
           style={style.HalfTextInput} 
           placeholder={"Value"}
@@ -62,10 +71,11 @@ export default () => {
           style={style.HalfTextInput} 
           placeholder={"Value"}
           value={value2}
-          onChangeText={(text)=>setValue2(text)}/>
+          onChangeText={(text)=>setValue2(text)}
+          />
         </View>
-        <TouchableOpacity style={style.Button}>
-          <Text style={style.ButtonText} onPress={sendAction}>Send</Text>
+        <TouchableOpacity style={style.Button} onPress={() => sendAction() }>
+          <Text style={style.ButtonText}>Send</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

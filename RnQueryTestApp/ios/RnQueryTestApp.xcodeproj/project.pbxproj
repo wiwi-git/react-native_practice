@@ -145,7 +145,6 @@
 				110A7D5F0C6F730BD38ED0D6 /* Pods-RnQueryTestApp-RnQueryTestAppTests.debug.xcconfig */,
 				72DA6AE75D01B079F6D8635C /* Pods-RnQueryTestApp-RnQueryTestAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q77G9L4656;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RnQueryTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q77G9L4656;
 				INFOPLIST_FILE = RnQueryTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
